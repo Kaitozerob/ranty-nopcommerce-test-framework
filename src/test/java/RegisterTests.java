@@ -57,4 +57,34 @@ public class RegisterTests extends BaseTest {
         Assert.assertTrue(registerPage.isPasswordErrorVisible(), "Password required error not displayed.");
         Assert.assertTrue(registerPage.isConfirmPasswordErrorVisible(), "Confirm password required error not displayed.");
     }
+
+    /**
+     * Test: TC-Register-05 - Confirmación de contraseña no coincide
+     *
+     * Given el usuario navega a la página de registro
+     * When completa el formulario con contraseñas distintas
+     * And envía el formulario
+     * Then se muestra un mensaje indicando que las contraseñas no coinciden
+     */
+    @Test(groups = {"Regression"})
+    public void testPasswordConfirmationMismatch() {
+        RegisterPage registerPage = new RegisterPage(driver);
+
+        registerPage.goToRegisterPage();
+
+        String email = DataGenerator.generateRandomEmail();
+        String firstName = DataGenerator.generateFirstName();
+        String lastName = DataGenerator.generateLastName();
+
+        registerPage.selectGender(RegisterPage.Gender.MALE);
+        registerPage.enterFirstName(firstName);
+        registerPage.enterLastName(lastName);
+        registerPage.enterEmail(email);
+        registerPage.enterPassword("Password123!");
+        registerPage.confirmPassword("Password321!");
+
+        registerPage.submitForm();
+
+        Assert.assertTrue(registerPage.isPasswordMismatchErrorVisible(), "El mensaje de error por contraseñas no coincidentes no se mostró.");
+    }
 }
