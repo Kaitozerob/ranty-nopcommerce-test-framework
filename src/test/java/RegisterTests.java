@@ -45,17 +45,16 @@ public class RegisterTests extends BaseTest {
     }
 
     @Test(groups = {"Functional", "Regression"})
-    public void testRegistroCamposObligatoriosFaltantes() {
+    public void testRequiredFieldsValidation() {
         RegisterPage registerPage = new RegisterPage(driver);
 
-        // Given: Navega a la página de registro
-        registerPage.irAPaginaDeRegistro();
+        registerPage.goToRegisterPage();
+        registerPage.submitForm();
 
-        // When: Deja los campos vacíos y envía el formulario
-        registerPage.enviarFormulario();
-
-        // Then: Verifica que el sistema muestre errores por campos obligatorios
-        // (esto se implementará luego con validaciones específicas)
-        Assert.assertTrue(true, "Validación de campos obligatorios pendiente de implementación.");
+        Assert.assertTrue(registerPage.isFirstNameErrorVisible(), "First name required error not displayed.");
+        Assert.assertTrue(registerPage.isLastNameErrorVisible(), "Last name required error not displayed.");
+        Assert.assertTrue(registerPage.isEmailErrorVisible(), "Email required error not displayed.");
+        Assert.assertTrue(registerPage.isPasswordErrorVisible(), "Password required error not displayed.");
+        Assert.assertTrue(registerPage.isConfirmPasswordErrorVisible(), "Confirm password required error not displayed.");
     }
 }
