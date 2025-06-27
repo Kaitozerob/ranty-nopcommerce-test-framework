@@ -121,4 +121,21 @@ public class RegisterPage extends BasePage {
     public boolean isConfirmPasswordErrorVisible() {
         return isDisplayed(confirmPasswordError);
     }
+
+    // Additional error validations (TC-Register-04, 05, 06)
+    private final By weakPasswordError = By.xpath("//span[contains(text(), 'must have at least')]");
+    private final By passwordMismatchError = By.xpath("//span[contains(text(), 'The password and confirmation password do not match.')]");
+    private final By duplicateEmailError = By.xpath("//li[contains(text(), 'The specified email already exists')]");
+
+    public boolean isWeakPasswordErrorVisible() {
+        return isDisplayed(weakPasswordError);
+    }
+
+    public boolean isPasswordMismatchErrorVisible() {
+        return isDisplayed(passwordMismatchError);
+    }
+
+    public boolean isDuplicateEmailErrorVisible() {
+        return isDisplayed(duplicateEmailError);
+    }
 }
