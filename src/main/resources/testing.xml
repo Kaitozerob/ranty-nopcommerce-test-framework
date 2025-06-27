@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="RantyTestSuite" verbose="1" parallel="false">
+    <test name="FunctionalTests">
+        <groups>
+            <run>
+                <include name="Functional"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.ranty.automation.tests.RegisterTests"/>
+        </classes>
+    </test>
+</suite>

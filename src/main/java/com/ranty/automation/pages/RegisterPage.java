@@ -13,62 +13,45 @@ import org.openqa.selenium.WebDriver;
  *   And envía el formulario
  *   Then se muestra un mensaje de registro exitoso
  */
-
 public class RegisterPage extends BasePage {
 
-    // Enlace Registro
-    private final By registerLink = By.className("ico-register");
-
-    // Género masculino
-    private final By genderMale = By.id("gender-male");
-
-    // Nombre
-    private final By firstName = By.id("FirstName");
-
-    // Apellido
-    private final By lastName = By.id("LastName");
-
-    // Correo
-    private final By email = By.id("Email");
-
-    // Contraseña
-    private final By password = By.id("Password");
-
-    // Confirmar contraseña
-    private final By confirmPassword = By.id("ConfirmPassword");
-
-    // Botón Registrar
-    private final By registerButton = By.id("register-button");
-
-    // Mensaje de éxito
-    private final By successMessage = By.className("result");
+    // Elementos del formulario de registro
+    private final By linkRegistro        = By.className("ico-register");
+    private final By generoMasculino     = By.id("gender-male");
+    private final By campoNombre         = By.id("FirstName");
+    private final By campoApellido       = By.id("LastName");
+    private final By campoCorreo         = By.id("Email");
+    private final By campoPassword       = By.id("Password");
+    private final By campoConfirmarPass  = By.id("ConfirmPassword");
+    private final By botonRegistrar      = By.id("register-button");
+    private final By mensajeExito        = By.className("result");
 
     public RegisterPage(WebDriver driver) {
         super(driver);
     }
 
-    // Navega al formulario de registro
-    public void goToRegisterPage() {
-        click(registerLink);
+    // Paso: Navegar al formulario de registro
+    public void irAPaginaDeRegistro() {
+        click(linkRegistro);
     }
 
-    // Llena el formulario con datos válidos
-    public void fillRegistrationForm(String fName, String lName, String mail, String pass) {
-        click(genderMale);
-        type(firstName, fName);
-        type(lastName, lName);
-        type(email, mail);
-        type(password, pass);
-        type(confirmPassword, pass);
+    // Paso: Llenar formulario con datos válidos
+    public void completarFormulario(String nombre, String apellido, String correo, String password) {
+        click(generoMasculino);
+        type(campoNombre, nombre);
+        type(campoApellido, apellido);
+        type(campoCorreo, correo);
+        type(campoPassword, password);
+        type(campoConfirmarPass, password);
     }
 
-    // Envía el formulario
-    public void submitForm() {
-        click(registerButton);
+    // Paso: Enviar formulario
+    public void enviarFormulario() {
+        click(botonRegistrar);
     }
 
-    // Verifica si se muestra mensaje de éxito
-    public boolean isSuccessMessageVisible() {
-        return isDisplayed(successMessage);
+    // Validación: Verifica si aparece el mensaje de registro exitoso
+    public boolean seMuestraMensajeDeExito() {
+        return isDisplayed(mensajeExito);
     }
 }

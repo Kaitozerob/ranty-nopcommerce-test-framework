@@ -33,18 +33,18 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.10.1</version>
+            <version>7.4.0</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Java Faker (opcional, para generar datos aleatorios) -->
+        <!-- Java Faker -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
 
-        <!-- Apache Commons Lang (opcional, utilidades para Strings, etc.) -->
+        <!-- Apache Commons Lang -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -54,7 +54,7 @@
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin -->
+            <!-- Compiler plugin -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
@@ -64,14 +64,24 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven Surefire Plugin para ejecutar testng.xml -->
+            <!-- Maven Surefire Plugin for TestNG -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Resources Plugin (para evitar errores de copia) -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <overwrite>true</overwrite>
                 </configuration>
             </plugin>
         </plugins>
