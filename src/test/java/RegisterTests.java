@@ -112,4 +112,29 @@ public class RegisterTests extends BaseTest {
 
         Assert.assertTrue(registerPage.isPasswordMismatchErrorVisible(), "El mensaje de error por contraseñas no coincidentes no se mostró.");
     }
+    /**
+     * Test: TC-Register-06 - Correo ya registrado
+     *
+     * Given el usuario navega a la página de registro
+     * When completa el formulario con un correo ya registrado
+     * And envía el formulario
+     * Then se muestra un mensaje indicando que el correo ya existe
+     */
+    @Test(groups = {"Regression"})
+    public void testDuplicateEmailValidation() {
+        RegisterPage registerPage = new RegisterPage(driver);
+
+        registerPage.goToRegisterPage();
+
+        // Usa un correo que ya haya sido registrado previamente
+        String duplicateEmail = "user_existing@mail.com";
+        String firstName = DataGenerator.generateFirstName();
+        String lastName = DataGenerator.generateLastName();
+        String password = DataGenerator.generatePassword();
+
+        registerPage.completeRegistrationForm(firstName, lastName, duplicateEmail, password, RegisterPage.Gender.MALE);
+        registerPage.submitForm();
+
+        Assert.assertTrue(registerPage.isDuplicateEmailErrorVisible(), "El mensaje de error por correo duplicado no se mostró.");
+    }
 }
