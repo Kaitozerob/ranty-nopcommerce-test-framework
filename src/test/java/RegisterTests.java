@@ -84,6 +84,31 @@ public class RegisterTests extends BaseTest {
     }
 
     /**
+     * Test: TC-Register-04 - Contraseña débil
+     *
+     * Given el usuario navega a la página de registro
+     * When completa el formulario con una contraseña débil
+     * And envía el formulario
+     * Then se muestra un mensaje indicando que la contraseña no es segura
+     */
+    @Test(groups = {"Regression"})
+    public void testWeakPasswordValidation() {
+        RegisterPage registerPage = new RegisterPage(driver);
+
+        registerPage.goToRegisterPage();
+
+        String email = DataGenerator.generateRandomEmail();
+        String firstName = DataGenerator.generateFirstName();
+        String lastName = DataGenerator.generateLastName();
+        String weakPassword = "123";
+
+        registerPage.completeRegistrationForm(firstName, lastName, email, weakPassword, RegisterPage.Gender.MALE);
+        registerPage.submitForm();
+
+        Assert.assertTrue(registerPage.isWeakPasswordErrorVisible(), "El mensaje de error por contraseña débil no se mostró.");
+    }
+
+    /**
      * Test: TC-Register-05 - Confirmación de contraseña no coincide
      *
      * Given el usuario navega a la página de registro
