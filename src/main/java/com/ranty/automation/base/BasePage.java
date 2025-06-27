@@ -12,11 +12,12 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     // Hace clic en un elemento visible y habilitado
     protected void click(By locator) {
+        System.out.println("Esperando a que el elemento sea clickeable: " + locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
