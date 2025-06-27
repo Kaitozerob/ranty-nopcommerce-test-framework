@@ -1,5 +1,5 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="RantyTestSuite" verbose="1" parallel="false">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="RantyTestSuite">
     <test name="FunctionalTests">
         <groups>
             <run>
