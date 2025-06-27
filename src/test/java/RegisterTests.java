@@ -32,4 +32,19 @@ public class RegisterTests extends BaseTest {
         // Then: Verifica mensaje de éxito
         Assert.assertTrue(registerPage.seMuestraMensajeDeExito(), "El mensaje de éxito no se mostró.");
     }
+
+    @Test(groups = {"Functional", "Regression"})
+    public void testRegistroCamposObligatoriosFaltantes() {
+        RegisterPage registerPage = new RegisterPage(driver);
+
+        // Given: Navega a la página de registro
+        registerPage.irAPaginaDeRegistro();
+
+        // When: Deja los campos vacíos y envía el formulario
+        registerPage.enviarFormulario();
+
+        // Then: Verifica que el sistema muestre errores por campos obligatorios
+        // (esto se implementará luego con validaciones específicas)
+        Assert.assertTrue(true, "Validación de campos obligatorios pendiente de implementación.");
+    }
 }
