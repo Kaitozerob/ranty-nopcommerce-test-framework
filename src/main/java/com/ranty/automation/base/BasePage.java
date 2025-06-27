@@ -33,6 +33,17 @@ public class BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
     }
 
+    // Retrieves visible text from an element, or returns empty string if not visible
+    protected String getTextIfVisible(By locator) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return element.getText();
+        } catch (TimeoutException e) {
+            System.out.println("Element not visible to get text: " + locator);
+            return "";
+        }
+    }
+
     // Checks whether an element is visible on the page
     protected boolean isDisplayed(By locator) {
         try {
