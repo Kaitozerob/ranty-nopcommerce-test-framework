@@ -138,4 +138,7 @@ public class RegisterPage extends BasePage {
     public boolean isDuplicateEmailErrorVisible() {
         return isDisplayed(duplicateEmailError);
     }
+    public String getSuccessMessage() {
+        return getText(successMessage);
+    }
 }

@@ -41,6 +41,7 @@ public class RegisterTests extends BaseTest {
         registerPage.submitForm();
 
         // Then
+        System.out.println("Mensaje mostrado: " + registerPage.getSuccessMessage());
         Assert.assertTrue(registerPage.isSuccessMessageVisible(), "El mensaje de éxito no se mostró.");
     }
 

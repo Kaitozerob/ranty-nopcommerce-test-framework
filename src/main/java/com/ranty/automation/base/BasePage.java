@@ -15,25 +15,25 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    // Hace clic en un elemento visible y habilitado
+    // Clicks on a visible and enabled element
     protected void click(By locator) {
-        System.out.println("Esperando a que el elemento sea clickeable: " + locator);
+        System.out.println("Waiting for element to be clickable: " + locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
-    // Escribe texto en un campo visible
+    // Types text into a visible input field
     protected void type(By locator, String text) {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         element.clear();
         element.sendKeys(text);
     }
 
-    // Obtiene el texto visible de un elemento
+    // Retrieves visible text from an element
     protected String getText(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
     }
 
-    // Verifica si un elemento es visible en la página
+    // Checks whether an element is visible on the page
     protected boolean isDisplayed(By locator) {
         try {
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
