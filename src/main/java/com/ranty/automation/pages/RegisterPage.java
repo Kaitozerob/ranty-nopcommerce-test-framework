@@ -26,6 +26,34 @@ public class RegisterPage extends BasePage {
     private final By botonRegistrar      = By.id("register-button");
     private final By mensajeExito        = By.className("result");
 
+    // Mensajes de error por campos obligatorios
+    private final By errorNombre     = By.id("FirstName-error");
+    private final By errorApellido   = By.id("LastName-error");
+    private final By errorCorreo     = By.id("Email-error");
+    private final By errorPassword   = By.id("Password-error");
+    private final By errorConfirmar  = By.id("ConfirmPassword-error");
+
+    // Validaciones para errores visibles
+    public boolean esVisibleErrorNombre() {
+        return isDisplayed(errorNombre);
+    }
+
+    public boolean esVisibleErrorApellido() {
+        return isDisplayed(errorApellido);
+    }
+
+    public boolean esVisibleErrorCorreo() {
+        return isDisplayed(errorCorreo);
+    }
+
+    public boolean esVisibleErrorPassword() {
+        return isDisplayed(errorPassword);
+    }
+
+    public boolean esVisibleErrorConfirmarPassword() {
+        return isDisplayed(errorConfirmar);
+    }
+
     public RegisterPage(WebDriver driver) {
         super(driver);
     }
