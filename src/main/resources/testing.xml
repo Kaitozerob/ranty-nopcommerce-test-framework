@@ -7,7 +7,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.ranty.automation.tests.RegisterTests"/>
+            <class name="RegisterTests"/>
         </classes>
     </test>
 </suite>

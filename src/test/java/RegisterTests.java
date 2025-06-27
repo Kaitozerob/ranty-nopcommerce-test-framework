@@ -1,5 +1,3 @@
-package com.ranty.automation.tests;
-
 import com.ranty.automation.base.BaseTest;
 import com.ranty.automation.pages.RegisterPage;
 import org.testng.Assert;
@@ -10,12 +8,11 @@ import java.util.UUID;
 /**
  * Test: TC-Register-01 - Registro exitoso
  *
- * Given el usuario navega al formulario de registro
+ * Given el usuario navega a la página de registro
  * When completa el formulario con datos válidos
  * And envía el formulario
  * Then se muestra un mensaje de registro exitoso
  */
-
 public class RegisterTests extends BaseTest {
 
     @Test(groups = {"Functional"})
@@ -23,16 +20,16 @@ public class RegisterTests extends BaseTest {
         RegisterPage registerPage = new RegisterPage(driver);
 
         // Given: Navega a la página de registro
-        registerPage.goToRegisterPage();
+        registerPage.irAPaginaDeRegistro();
 
         // When: Llena el formulario con datos válidos
-        String randomEmail = "user" + UUID.randomUUID() + "@mail.com";
-        registerPage.fillRegistrationForm("Juan", "Tester", randomEmail, "Password123!");
+        String correoUnico = "usuario" + UUID.randomUUID() + "@mail.com";
+        registerPage.completarFormulario("Juan", "Tester", correoUnico, "Password123!");
 
         // And: Envía el formulario
-        registerPage.submitForm();
+        registerPage.enviarFormulario();
 
         // Then: Verifica mensaje de éxito
-        Assert.assertTrue(registerPage.isSuccessMessageVisible(), "El mensaje de éxito no se mostró.");
+        Assert.assertTrue(registerPage.seMuestraMensajeDeExito(), "El mensaje de éxito no se mostró.");
     }
 }
