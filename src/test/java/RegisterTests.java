@@ -59,6 +59,31 @@ public class RegisterTests extends BaseTest {
     }
 
     /**
+     * Test: TC-Register-03 - Correo inválido
+     *
+     * Given el usuario navega a la página de registro
+     * When completa el formulario con un correo inválido
+     * And envía el formulario
+     * Then se muestra un mensaje indicando que el correo no es válido
+     */
+    @Test(groups = {"Regression"})
+    public void testInvalidEmailValidation() {
+        RegisterPage registerPage = new RegisterPage(driver);
+
+        registerPage.goToRegisterPage();
+
+        String email = "correo-invalido";
+        String firstName = DataGenerator.generateFirstName();
+        String lastName = DataGenerator.generateLastName();
+        String password = DataGenerator.generatePassword();
+
+        registerPage.completeRegistrationForm(firstName, lastName, email, password, RegisterPage.Gender.MALE);
+        registerPage.submitForm();
+
+        Assert.assertTrue(registerPage.isEmailErrorVisible(), "El mensaje de error por correo inválido no se mostró.");
+    }
+
+    /**
      * Test: TC-Register-05 - Confirmación de contraseña no coincide
      *
      * Given el usuario navega a la página de registro
